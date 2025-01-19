@@ -1,20 +1,32 @@
 import React from "react";
 import image from "../assets/duranto.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   return (
     <div>
-      <div className="sticky top-0 z-20 mb-3 bg-blue-500 text-white shadow-md">
-        <div className="flex items-center justify-between px-6 py-2">
-          <p className="text-sm font-medium">
-            📢 Admissions are open! Apply Now!
-          </p>
-          <a
-            href="#apply"
-            className="text-sm font-semibold underline hover:text-gray-200"
-          >
-            Learn More
-          </a>
+      <div className="sticky top-0 z-20 mb-3 bg-[rgb(8,20,51)] text-white shadow-md">
+        <div className="flex items-center justify-between px-6 py-4">
+          <div className="flex items-center gap-2">
+            <FontAwesomeIcon icon={faFacebook} />
+            <p className="text-sm">ফেসবুকে নতুন নতুন আপডেট পেতে ক্লিক করুন</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <FontAwesomeIcon icon={faWhatsapp} />
+            <p className="text-sm">
+              হোয়াটসঅ্যাপের মাধ্যমে বুকিং দিতে ক্লিক করুন
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <FontAwesomeIcon icon={faPhone} />
+            <p className="text-sm">01519400800 or 01735150555</p>
+          </div>
+          <div className="flex items-center gap-2">
+            <FontAwesomeIcon icon={faEnvelope} />
+            <p className="text-sm">durontotravelsbd@gmail.com</p>
+          </div>
         </div>
       </div>
       <div className="navbar bg-base-100 px-12 mx-auto">
