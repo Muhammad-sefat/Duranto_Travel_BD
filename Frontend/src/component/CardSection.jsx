@@ -16,7 +16,7 @@ const CardSection = () => {
           যে সকল বিশ্ববিদ্যালয়ের আমাদের বাস সার্ভিস চলমান।
         </p>
       </div>
-      <div className="grid grid-cols-4 gap-4 my-10 mx-10">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 my-10 mx-10">
         <SingleCard image1={image1} text={"BUET (Up-Down)"} />
         <SingleCard
           image1={image2}

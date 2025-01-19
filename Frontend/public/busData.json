@@ -1,0 +1,122 @@
+[
+  {
+    "from": "(Boro pull) Halishour Chittagong",
+    "to": "Dhaka University (DU) Exam centre CU.",
+    "unit": "Unit-B",
+    "busType": "Non AC",
+    "journeyDate": "25-Jan-2025",
+    "examDate": "25-Jan-2025"
+  },
+  {
+    "from": "(Chawkbazar) Chittagong",
+    "to": "Dhaka University (DU) Exam centre CU.",
+    "unit": "Unit-B",
+    "busType": "Non AC",
+    "journeyDate": "25-Jan-2025",
+    "examDate": "25-Jan-2025"
+  },
+  {
+    "from": "(Boro pull) Halishour Chittagong",
+    "to": "Dhaka University (DU) Exam centre CU.",
+    "unit": "Unit-C",
+    "busType": "Non AC",
+    "journeyDate": "08-Feb-2025",
+    "examDate": "08-Feb-2025"
+  },
+  {
+    "from": "(New Market) Chittagong",
+    "to": "Rajshahi University (RU) Exam Centre",
+    "unit": "Unit-A",
+    "busType": "AC",
+    "journeyDate": "10-Feb-2025",
+    "examDate": "10-Feb-2025"
+  },
+  {
+    "from": "(Kotwali) Chittagong",
+    "to": "Jahangirnagar University (JU) Exam Centre",
+    "unit": "Unit-D",
+    "busType": "Non AC",
+    "journeyDate": "15-Feb-2025",
+    "examDate": "15-Feb-2025"
+  },
+  {
+    "from": "(Boro pull) Halishour Chittagong",
+    "to": "Khulna University Exam Centre",
+    "unit": "Unit-C",
+    "busType": "Non AC",
+    "journeyDate": "20-Feb-2025",
+    "examDate": "20-Feb-2025"
+  },
+  {
+    "from": "(Chawkbazar) Chittagong",
+    "to": "Dhaka University (DU) Exam centre CU.",
+    "unit": "Unit-A",
+    "busType": "AC",
+    "journeyDate": "25-Feb-2025",
+    "examDate": "25-Feb-2025"
+  },
+  {
+    "from": "(New Market) Chittagong",
+    "to": "Rajshahi University (RU) Exam Centre",
+    "unit": "Unit-A",
+    "busType": "AC",
+    "journeyDate": "28-Feb-2025",
+    "examDate": "28-Feb-2025"
+  },
+  {
+    "from": "(Kotwali) Chittagong",
+    "to": "Jahangirnagar University (JU) Exam Centre",
+    "unit": "Unit-D",
+    "busType": "Non AC",
+    "journeyDate": "03-Mar-2025",
+    "examDate": "03-Mar-2025"
+  },
+  {
+    "from": "(Boro pull) Halishour Chittagong",
+    "to": "Khulna University Exam Centre",
+    "unit": "Unit-C",
+    "busType": "Non AC",
+    "journeyDate": "08-Mar-2025",
+    "examDate": "08-Mar-2025"
+  },
+  {
+    "from": "(Chawkbazar) Chittagong",
+    "to": "Dhaka University (DU) Exam centre CU.",
+    "unit": "Unit-B",
+    "busType": "AC",
+    "journeyDate": "12-Mar-2025",
+    "examDate": "12-Mar-2025"
+  },
+  {
+    "from": "(New Market) Chittagong",
+    "to": "Rajshahi University (RU) Exam Centre",
+    "unit": "Unit-A",
+    "busType": "AC",
+    "journeyDate": "15-Mar-2025",
+    "examDate": "15-Mar-2025"
+  },
+  {
+    "from": "(Kotwali) Chittagong",
+    "to": "Jahangirnagar University (JU) Exam Centre",
+    "unit": "Unit-D",
+    "busType": "Non AC",
+    "journeyDate": "18-Mar-2025",
+    "examDate": "18-Mar-2025"
+  },
+  {
+    "from": "(Boro pull) Halishour Chittagong",
+    "to": "Khulna University Exam Centre",
+    "unit": "Unit-C",
+    "busType": "AC",
+    "journeyDate": "21-Mar-2025",
+    "examDate": "21-Mar-2025"
+  },
+  {
+    "from": "(Chawkbazar) Chittagong",
+    "to": "Dhaka University (DU) Exam centre CU.",
+    "unit": "Unit-B",
+    "busType": "Non AC",
+    "journeyDate": "25-Mar-2025",
+    "examDate": "25-Mar-2025"
+  }
+]
