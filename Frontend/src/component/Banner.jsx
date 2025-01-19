@@ -7,7 +7,7 @@ const Banner = () => {
       <div className="px-10 my-10">
         <p className="text-3xl font-bold my-10">
           বিশ্ববিদ্যালয়ে ভর্তি পরীক্ষার্থীদের <br />
-          <span className="text-orange-600">জন্য এডমিশন বাসের সিট বুকিং</span>
+          <span className="text-orange-400">জন্য এডমিশন বাসের সিট বুকিং</span>
         </p>
         <p className="text-xl font-bold mt-8 leading-8 text-gray-600">
           সব পরীক্ষার্থী একসাথে চলি স্বপ্নের ক্যাম্পাসে” দুরন্ত ট্রাভেলস” <br />
