@@ -3,11 +3,12 @@ import image from "../assets/duranto.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router";
 
 const Navbar = () => {
   return (
     <div>
-      <div className="sticky top-0 z-20 mb-3 bg-[rgb(8,20,51)] text-white shadow-md">
+      <div className="fixed w-full top-0 z-20 bg-[rgb(8,20,51)] text-white shadow-md">
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
             <FontAwesomeIcon icon={faFacebook} />
@@ -29,7 +30,8 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      <div className="navbar bg-base-100 px-12 mx-auto">
+      {/* main navbar */}
+      <div className="navbar bg-base-100 px-12 mx-auto mt-16">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -56,19 +58,19 @@ const Navbar = () => {
                 <a>Home</a>
               </li>
               <li>
-                <a>Find Invoice</a>
+                <NavLink to={"/find-invoice"}>Find Invoice</NavLink>
               </li>
               <li>
-                <a>Gallary</a>
+                <NavLink to={"/gallary"}>Gallary</NavLink>
               </li>
               <li>
-                <a>Blog</a>
+                <NavLink to={"/blog"}>Blog</NavLink>
               </li>
               <li>
-                <a>Conditions</a>
+                <NavLink to={"/condition"}>Conditions</NavLink>
               </li>
               <li>
-                <a>My Account</a>
+                <NavLink to={"/my-account"}>My Account</NavLink>
               </li>
             </ul>
           </div>
@@ -81,19 +83,19 @@ const Navbar = () => {
               <a>Home</a>
             </li>
             <li>
-              <a>Find Invoice</a>
+              <NavLink to={"/find-invoice"}>Find Invoice</NavLink>
             </li>
             <li>
-              <a>Gallary</a>
+              <NavLink to={"/gallary"}>Gallary</NavLink>
             </li>
             <li>
-              <a>Blog</a>
+              <NavLink to={"/blog"}>Blog</NavLink>
             </li>
             <li>
-              <a>Conditions</a>
+              <NavLink to={"/condition"}>Conditions</NavLink>
             </li>
             <li>
-              <a>My Account</a>
+              <NavLink to={"/my-account"}>My Account</NavLink>
             </li>
           </ul>
         </div>
