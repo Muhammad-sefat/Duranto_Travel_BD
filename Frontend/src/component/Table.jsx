@@ -1,6 +1,7 @@
 import { faCarSide } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Table = () => {
   const [data, setData] = useState([]);
@@ -51,9 +52,11 @@ const Table = () => {
                   {row.examDate}
                 </td>
                 <td className="border border-gray-300 px-4 py-3">
-                  <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 flex items-center gap-2">
-                    <FontAwesomeIcon icon={faCarSide} /> Book
-                  </button>
+                  <NavLink to={"/sit-plan"}>
+                    <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 flex items-center gap-2">
+                      <FontAwesomeIcon icon={faCarSide} /> Book
+                    </button>
+                  </NavLink>
                 </td>
               </tr>
             ))}

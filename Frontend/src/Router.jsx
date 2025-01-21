@@ -6,6 +6,7 @@ import Blog from "./pages/Blog";
 import Conditions from "./pages/Conditions";
 import Gallary from "./pages/Gallary";
 import Account from "./pages/Account";
+import BusSitPlanDetails from "./pages/BusSitPlanDetails";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/my-account",
         element: <Account />,
+      },
+      {
+        path: "/sit-plan",
+        element: <BusSitPlanDetails />,
       },
     ],
   },
