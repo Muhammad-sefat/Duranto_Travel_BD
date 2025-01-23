@@ -1,62 +1,88 @@
-import React from "react";
+import React, { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const Account = () => {
+  const { creatUser, signIn } = useAuth();
+  const [registerEmail, setRegisterEmail] = useState("");
+  const [registerPassword, setRegisterPassword] = useState("");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [message, setMessage] = useState({ type: "", content: "" });
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    const result = await creatUser(registerEmail, registerPassword);
+    if (result.error) {
+      setMessage({ type: "error", content: result.error });
+    } else {
+      setMessage({ type: "success", content: "Registration successful!" });
+    }
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const result = await signIn(loginEmail, loginPassword);
+    if (result.error) {
+      setMessage({ type: "error", content: result.error });
+    } else {
+      setMessage({ type: "success", content: "Login successful!" });
+    }
+  };
+
   return (
     <div className="container mx-auto my-10 px-4">
       <h1 className="text-3xl font-bold text-gray-800 text-center mb-8">
         My Account
       </h1>
+      {message.content && (
+        <div
+          className={`mb-4 p-3 rounded-lg text-white ${
+            message.type === "success" ? "bg-green-500" : "bg-red-500"
+          }`}
+        >
+          {message.content}
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Login Section */}
         <div className="border border-gray-300 rounded-lg p-6 shadow-md">
           <h2 className="text-2xl font-semibold mb-6">Login</h2>
-          <form>
+          <form onSubmit={handleLogin}>
             <div className="mb-4">
               <label
-                htmlFor="username"
+                htmlFor="login-email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Username or email address{" "}
-                <span className="text-red-500">*</span>
+                Email address <span className="text-red-500">*</span>
               </label>
               <input
-                type="text"
-                id="username"
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-500"
-                placeholder="Enter your username or email"
+                type="email"
+                id="login-email"
+                value={loginEmail}
+                onChange={(e) => setLoginEmail(e.target.value)}
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Enter your email"
               />
             </div>
             <div className="mb-4">
               <label
-                htmlFor="password"
+                htmlFor="login-password"
                 className="block text-sm font-medium text-gray-700"
               >
                 Password <span className="text-red-500">*</span>
               </label>
-              <div className="relative">
-                <input
-                  type="password"
-                  id="password"
-                  className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-500"
-                  placeholder="Enter your password"
-                />
-                <span className="absolute inset-y-0 right-3 flex items-center">
-                  <i className="fas fa-eye text-gray-500"></i>
-                </span>
-              </div>
-            </div>
-            <div className="flex items-center justify-between mb-4">
-              <label className="flex items-center">
-                <input type="checkbox" className="h-4 w-4 text-lime-500" />
-                <span className="ml-2 text-sm text-gray-700">Remember me</span>
-              </label>
-              <a href="#" className="text-sm text-lime-500 hover:underline">
-                Lost your password?
-              </a>
+              <input
+                type="password"
+                id="login-password"
+                value={loginPassword}
+                onChange={(e) => setLoginPassword(e.target.value)}
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg"
+                placeholder="Enter your password"
+              />
             </div>
             <button
               type="submit"
-              className="w-full bg-lime-500 text-white py-2 rounded-lg hover:bg-lime-600"
+              className="w-full bg-lime-500 text-white py-2 rounded-lg"
             >
               Log in
             </button>
@@ -66,18 +92,20 @@ const Account = () => {
         {/* Register Section */}
         <div className="border border-gray-300 rounded-lg p-6 shadow-md">
           <h2 className="text-2xl font-semibold mb-6">Register</h2>
-          <form>
+          <form onSubmit={handleRegister}>
             <div className="mb-4">
               <label
-                htmlFor="email"
+                htmlFor="register-email"
                 className="block text-sm font-medium text-gray-700"
               >
                 Email address <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
-                id="email"
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-500"
+                id="register-email"
+                value={registerEmail}
+                onChange={(e) => setRegisterEmail(e.target.value)}
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg"
                 placeholder="Enter your email"
               />
             </div>
@@ -91,16 +119,15 @@ const Account = () => {
               <input
                 type="password"
                 id="register-password"
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-500"
+                value={registerPassword}
+                onChange={(e) => setRegisterPassword(e.target.value)}
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg"
                 placeholder="Create a password"
               />
             </div>
-            <p className="text-sm text-gray-600 mb-4">
-              A link to set a new password will be sent to your email address.
-            </p>
             <button
               type="submit"
-              className="w-full bg-lime-500 text-white py-2 rounded-lg hover:bg-lime-600"
+              className="w-full bg-lime-500 text-white py-2 rounded-lg"
             >
               Register
             </button>
