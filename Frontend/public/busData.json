@@ -118,5 +118,14 @@
     "busType": "Non AC",
     "journeyDate": "25-Mar-2025",
     "examDate": "25-Mar-2025"
+  },
+  {
+    "from": "(Chawkbazar) Chittagong",
+    "to": "Dhaka University (DU) Exam centre CU.",
+    "unit": "Unit-B",
+    "busType": "Non AC",
+    "journeyDate": "25-Mar-2025",
+    "examDate": "25-Mar-2025",
+    "price": 250
   }
 ]

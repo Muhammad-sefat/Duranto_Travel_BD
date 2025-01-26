@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import useAuth from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Account = () => {
   const { creatUser, signIn } = useAuth();
@@ -9,23 +11,39 @@ const Account = () => {
   const [loginPassword, setLoginPassword] = useState("");
   const [message, setMessage] = useState({ type: "", content: "" });
 
+  const navigate = useNavigate();
+
   const handleRegister = async (e) => {
     e.preventDefault();
-    const result = await creatUser(registerEmail, registerPassword);
-    if (result.error) {
-      setMessage({ type: "error", content: result.error });
-    } else {
-      setMessage({ type: "success", content: "Registration successful!" });
+    try {
+      const result = await creatUser(registerEmail, registerPassword);
+      if (result.error) {
+        toast.error(result.error, { position: "top-right" });
+      } else {
+        toast.success("Registration successful!", { position: "top-right" });
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error(error.message || "An unexpected error occurred.", {
+        position: "top-right",
+      });
     }
   };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const result = await signIn(loginEmail, loginPassword);
-    if (result.error) {
-      setMessage({ type: "error", content: result.error });
-    } else {
-      setMessage({ type: "success", content: "Login successful!" });
+    try {
+      const result = await signIn(loginEmail, loginPassword);
+      if (result.error) {
+        toast.error(result.error, { position: "top-right" });
+      } else {
+        toast.success("Login successful!", { position: "top-right" });
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error(error.message || "An unexpected error occurred.", {
+        position: "top-right",
+      });
     }
   };
 

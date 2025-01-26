@@ -80,7 +80,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-base font-semibold text-gray-500">
             <li>
-              <a>Home</a>
+              <NavLink to={"/"}>Home</NavLink>
             </li>
             <li>
               <NavLink to={"/find-invoice"}>Find Invoice</NavLink>
