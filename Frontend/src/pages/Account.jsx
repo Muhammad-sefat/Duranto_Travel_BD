@@ -21,7 +21,7 @@ const Account = () => {
         toast.error(result.error, { position: "top-right" });
       } else {
         toast.success("Registration successful!", { position: "top-right" });
-        navigate("/");
+        navigate("/main-dashboard");
       }
     } catch (error) {
       toast.error(error.message || "An unexpected error occurred.", {
@@ -38,7 +38,7 @@ const Account = () => {
         toast.error(result.error, { position: "top-right" });
       } else {
         toast.success("Login successful!", { position: "top-right" });
-        navigate("/");
+        navigate("/main-dashboard");
       }
     } catch (error) {
       toast.error(error.message || "An unexpected error occurred.", {
