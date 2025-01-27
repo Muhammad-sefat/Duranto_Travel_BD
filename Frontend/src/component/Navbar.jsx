@@ -4,8 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
+  const { user } = useAuth();
   return (
     <div>
       <div className="fixed w-full top-0 z-20 bg-[rgb(8,20,51)] text-white shadow-md">
@@ -70,7 +72,9 @@ const Navbar = () => {
                 <NavLink to={"/condition"}>Conditions</NavLink>
               </li>
               <li>
-                <NavLink to={"/my-account"}>My Account</NavLink>
+                <NavLink to={user ? "/main-dashboard" : "/my-account"}>
+                  My Account
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -95,7 +99,9 @@ const Navbar = () => {
               <NavLink to={"/condition"}>Conditions</NavLink>
             </li>
             <li>
-              <NavLink to={"/my-account"}>My Account</NavLink>
+              <NavLink to={user ? "/main-dashboard" : "/my-account"}>
+                My Account
+              </NavLink>
             </li>
           </ul>
         </div>
