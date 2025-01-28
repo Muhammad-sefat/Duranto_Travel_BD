@@ -5,7 +5,13 @@
     "unit": "Unit-B",
     "busType": "Non AC",
     "journeyDate": "25-Jan-2025",
-    "examDate": "25-Jan-2025"
+    "examDate": "25-Jan-2025",
+    "boardingTime": "(Boro pull) Halishour Chittagong(6am)",
+    "dropingTime": "Dhaka University (DU) Exam centre CU.(10am)",
+    "duration": "4 hours",
+    "seatType": "Adult",
+    "price": 250,
+    "capacity": 40
   },
   {
     "from": "(Chawkbazar) Chittagong",
@@ -13,7 +19,13 @@
     "unit": "Unit-B",
     "busType": "Non AC",
     "journeyDate": "25-Jan-2025",
-    "examDate": "25-Jan-2025"
+    "examDate": "25-Jan-2025",
+    "boardingTime": "(Chawkbazar) Chittagong(7am)",
+    "dropingTime": "Dhaka University (DU) Exam centre CU.(11am)",
+    "duration": "4 hours",
+    "seatType": "Adult",
+    "price": 250,
+    "capacity": 40
   },
   {
     "from": "(Boro pull) Halishour Chittagong",
@@ -21,7 +33,13 @@
     "unit": "Unit-C",
     "busType": "Non AC",
     "journeyDate": "08-Feb-2025",
-    "examDate": "08-Feb-2025"
+    "examDate": "08-Feb-2025",
+    "boardingTime": "(Boro pull) Halishour Chittagong(6am)",
+    "dropingTime": "Dhaka University (DU) Exam centre CU.(10am)",
+    "duration": "4 hours",
+    "seatType": "Adult",
+    "price": 250,
+    "capacity": 40
   },
   {
     "from": "(New Market) Chittagong",
@@ -29,7 +47,13 @@
     "unit": "Unit-A",
     "busType": "AC",
     "journeyDate": "10-Feb-2025",
-    "examDate": "10-Feb-2025"
+    "examDate": "10-Feb-2025",
+    "boardingTime": "(New Market) Chittagong(5am)",
+    "dropingTime": "Rajshahi University (RU) Exam Centre(11am)",
+    "duration": "6 hours",
+    "seatType": "Adult",
+    "price": 600,
+    "capacity": 40
   },
   {
     "from": "(Kotwali) Chittagong",
@@ -37,7 +61,13 @@
     "unit": "Unit-D",
     "busType": "Non AC",
     "journeyDate": "15-Feb-2025",
-    "examDate": "15-Feb-2025"
+    "examDate": "15-Feb-2025",
+    "boardingTime": "(Kotwali) Chittagong(4am)",
+    "dropingTime": "Jahangirnagar University (JU) Exam Centre(10am)",
+    "duration": "6 hours",
+    "seatType": "Adult",
+    "price": 300,
+    "capacity": 40
   },
   {
     "from": "(Boro pull) Halishour Chittagong",
@@ -45,7 +75,13 @@
     "unit": "Unit-C",
     "busType": "Non AC",
     "journeyDate": "20-Feb-2025",
-    "examDate": "20-Feb-2025"
+    "examDate": "20-Feb-2025",
+    "boardingTime": "(Boro pull) Halishour Chittagong(5am)",
+    "dropingTime": "Khulna University Exam Centre(11am)",
+    "duration": "6 hours",
+    "seatType": "Adult",
+    "price": 400,
+    "capacity": 40
   },
   {
     "from": "(Chawkbazar) Chittagong",
@@ -53,7 +89,13 @@
     "unit": "Unit-A",
     "busType": "AC",
     "journeyDate": "25-Feb-2025",
-    "examDate": "25-Feb-2025"
+    "examDate": "25-Feb-2025",
+    "boardingTime": "(Chawkbazar) Chittagong(7am)",
+    "dropingTime": "Dhaka University (DU) Exam centre CU.(11am)",
+    "duration": "4 hours",
+    "seatType": "Adult",
+    "price": 300,
+    "capacity": 40
   },
   {
     "from": "(New Market) Chittagong",
@@ -61,7 +103,13 @@
     "unit": "Unit-A",
     "busType": "AC",
     "journeyDate": "28-Feb-2025",
-    "examDate": "28-Feb-2025"
+    "examDate": "28-Feb-2025",
+    "boardingTime": "(New Market) Chittagong(5am)",
+    "dropingTime": "Rajshahi University (RU) Exam Centre(11am)",
+    "duration": "6 hours",
+    "seatType": "Adult",
+    "price": 600,
+    "capacity": 40
   },
   {
     "from": "(Kotwali) Chittagong",
@@ -69,7 +117,13 @@
     "unit": "Unit-D",
     "busType": "Non AC",
     "journeyDate": "03-Mar-2025",
-    "examDate": "03-Mar-2025"
+    "examDate": "03-Mar-2025",
+    "boardingTime": "(Kotwali) Chittagong(4am)",
+    "dropingTime": "Jahangirnagar University (JU) Exam Centre(10am)",
+    "duration": "6 hours",
+    "seatType": "Adult",
+    "price": 300,
+    "capacity": 40
   },
   {
     "from": "(Boro pull) Halishour Chittagong",
@@ -77,7 +131,13 @@
     "unit": "Unit-C",
     "busType": "Non AC",
     "journeyDate": "08-Mar-2025",
-    "examDate": "08-Mar-2025"
+    "examDate": "08-Mar-2025",
+    "boardingTime": "(Boro pull) Halishour Chittagong(5am)",
+    "dropingTime": "Khulna University Exam Centre(11am)",
+    "duration": "6 hours",
+    "seatType": "Adult",
+    "price": 400,
+    "capacity": 40
   },
   {
     "from": "(Chawkbazar) Chittagong",
@@ -85,7 +145,13 @@
     "unit": "Unit-B",
     "busType": "AC",
     "journeyDate": "12-Mar-2025",
-    "examDate": "12-Mar-2025"
+    "examDate": "12-Mar-2025",
+    "boardingTime": "(Chawkbazar) Chittagong(7am)",
+    "dropingTime": "Dhaka University (DU) Exam centre CU.(11am)",
+    "duration": "4 hours",
+    "seatType": "Adult",
+    "price": 250,
+    "capacity": 40
   },
   {
     "from": "(New Market) Chittagong",
@@ -93,7 +159,13 @@
     "unit": "Unit-A",
     "busType": "AC",
     "journeyDate": "15-Mar-2025",
-    "examDate": "15-Mar-2025"
+    "examDate": "15-Mar-2025",
+    "boardingTime": "(New Market) Chittagong(5am)",
+    "dropingTime": "Rajshahi University (RU) Exam Centre(11am)",
+    "duration": "6 hours",
+    "seatType": "Adult",
+    "price": 600,
+    "capacity": 40
   },
   {
     "from": "(Kotwali) Chittagong",
@@ -101,7 +173,13 @@
     "unit": "Unit-D",
     "busType": "Non AC",
     "journeyDate": "18-Mar-2025",
-    "examDate": "18-Mar-2025"
+    "examDate": "18-Mar-2025",
+    "boardingTime": "(Kotwali) Chittagong(4am)",
+    "dropingTime": "Jahangirnagar University (JU) Exam Centre(10am)",
+    "duration": "6 hours",
+    "seatType": "Adult",
+    "price": 300,
+    "capacity": 40
   },
   {
     "from": "(Boro pull) Halishour Chittagong",
@@ -109,15 +187,13 @@
     "unit": "Unit-C",
     "busType": "AC",
     "journeyDate": "21-Mar-2025",
-    "examDate": "21-Mar-2025"
-  },
-  {
-    "from": "(Chawkbazar) Chittagong",
-    "to": "Dhaka University (DU) Exam centre CU.",
-    "unit": "Unit-B",
-    "busType": "Non AC",
-    "journeyDate": "25-Mar-2025",
-    "examDate": "25-Mar-2025"
+    "examDate": "21-Mar-2025",
+    "boardingTime": "(Boro pull) Halishour Chittagong(5am)",
+    "dropingTime": "Khulna University Exam Centre(11am)",
+    "duration": "6 hours",
+    "seatType": "Adult",
+    "price": 450,
+    "capacity": 40
   },
   {
     "from": "(Chawkbazar) Chittagong",
@@ -126,6 +202,11 @@
     "busType": "Non AC",
     "journeyDate": "25-Mar-2025",
     "examDate": "25-Mar-2025",
-    "price": 250
+    "boardingTime": "(Chawkbazar) Chittagong(8am)",
+    "dropingTime": "Dhaka University (DU) Exam centre CU.(12am)",
+    "duration": "4 hours",
+    "seatType": "Adult",
+    "price": 250,
+    "capacity": 40
   }
 ]

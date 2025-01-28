@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
-const routes = require("./routes");
 const errorHandler = require("./middleware/errorHandler");
 const busRoutes = require("./routes/busRoute");
 
@@ -16,14 +15,16 @@ app.use(express.json());
 // Database connection
 connectDB();
 
-// Routes
-app.use("/", routes);
-
 // Error handling
 app.use(errorHandler);
 
 // Other middleware and setup
 app.use("/api/buses", busRoutes);
+
+// Root Route
+app.get("/", (req, res) => {
+  res.send("Hello, Server is Runing from Backend!");
+});
 
 // Start the server
 app.listen(PORT, () => {

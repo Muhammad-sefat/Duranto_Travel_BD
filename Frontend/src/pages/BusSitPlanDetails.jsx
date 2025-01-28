@@ -3,8 +3,12 @@ import bus from "../assets/buss.jpg";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useLocation } from "react-router-dom";
 
 const BusSitPlanDetails = () => {
+  const location = useLocation();
+  const { busData } = location.state || {};
+
   const [from, setFrom] = useState(null);
   const [to, setTo] = useState(null);
   const [journeyDate, setJourneyDate] = useState(new Date());
@@ -27,14 +31,11 @@ const BusSitPlanDetails = () => {
     ["I1", "I2", "I3", "I4"],
   ];
 
-  const seatPrice = 250;
-  const seatType = "Adult";
-
   const handleSeatClick = (seat) => {
     const seatDetails = {
       seatNumber: seat,
-      type: seatType,
-      price: seatPrice,
+      type: busData.seatType,
+      price: busData.price,
     };
 
     // Add or remove seat from selectedSeats
@@ -64,12 +65,10 @@ const BusSitPlanDetails = () => {
 
         <div>
           <div className="border p-5 rounded">
-            <p className="font-bold text-lg text-green-600">
-              Dhaka University (DU) Exam Centre CU (Bus-1, Unit DU-B)
-            </p>
+            <p className="font-bold text-lg text-green-600">{busData.to}</p>
             <hr className="my-3" />
             <div className="text-base font-medium">
-              <p>Coach Type : Non Ac</p>
+              <p>Coach Type : {busData.busType}</p>
               <p>Passenger Capacity : 40</p>
             </div>
           </div>
@@ -78,12 +77,12 @@ const BusSitPlanDetails = () => {
             <div className="border p-5 rounded">
               <p className="text-xl font-semibold">Boarding</p>
               <hr className="my-3" />
-              <p> (Boro pull) Halishour Chittagong (7:30 am)</p>
+              <p> 📍 {busData.from}</p>
             </div>
             <div className="border p-5 rounded">
               <p className="text-xl font-semibold">Droping</p>{" "}
               <hr className="my-3" />
-              <p> Dhaka University (DU) Exam centre CU (9:30 am)</p>
+              <p> 📍 {busData.to}</p>
             </div>
           </div>
         </div>
@@ -152,22 +151,20 @@ const BusSitPlanDetails = () => {
               <div className="flex-shrink-0 flex justify-center items-center">
                 <img src={bus} alt="Bus" className="w-24 object-cover" />
               </div>
-              <p className="font-bold text-lg text-green-600">
-                Dhaka University (DU) Exam Centre CU (Bus-1, Unit DU-B)
-              </p>
+              <p className="font-bold text-lg text-green-600">{busData.to}</p>
             </div>
             <div className="md:w-[25%]">
               <p className="text-gray-700">
-                📍 {locations[0]?.label} (7:30 am)
+                📍 {locations[0]?.label} ( 7:30 am )
               </p>
               <p className="text-gray-700">
-                📍 {locations[1]?.label} (9:30 am)
+                📍 {locations[1]?.label} ( 9:30 am )
               </p>
               <p className="text-gray-700">⏳ Duration: 2 H 0 M</p>
             </div>
             <div className="md:w-[45%] flex justify-between items-center gap-5 text-center">
               <div className="text-gray-700">
-                <p className="text-lg font-medium">Non AC</p>
+                <p className="text-lg font-medium">{busData.busType}</p>
                 <p>Coach Type</p>
               </div>
               <div className="text-gray-700">
@@ -175,7 +172,7 @@ const BusSitPlanDetails = () => {
                 <p> 34/40</p>
               </div>
               <div className="text-gray-700 font-bold">
-                <p className="text-lg font-medium">250.00৳ </p>
+                <p className="text-lg font-medium">{busData.price}৳ </p>
                 <p>Fare/Seat</p>
               </div>
               <button

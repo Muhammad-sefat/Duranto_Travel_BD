@@ -1,16 +1,24 @@
 import { faCarSide } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Table = () => {
-  const [data, setData] = useState([]);
+  const [buses, setBuses] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("/busData.json")
+    fetch("http://localhost:5000/api/buses")
       .then((response) => response.json())
-      .then((data) => setData(data));
+      .then((data) => setBuses(data))
+      .catch((error) => console.error("Error fetching bus data:", error));
   }, []);
+
+  const handleBookClick = (busData) => {
+    navigate("/sit-plan", { state: { busData } });
+  };
+
   return (
     <div className="my-5">
       <div className="text-center border-2 rounded p-3 w-[75%] mx-auto">
@@ -34,7 +42,7 @@ const Table = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((row, index) => (
+            {buses.map((row, index) => (
               <tr
                 key={index}
                 className={`${index % 2 === 0 ? "bg-gray-100" : "bg-gray-200"}`}
@@ -46,17 +54,18 @@ const Table = () => {
                   {row.busType}
                 </td>
                 <td className="border border-gray-300 px-4 py-4">
-                  {row.journeyDate}
+                  {new Date(row.journeyDate).toLocaleDateString()}
                 </td>
                 <td className="border border-gray-300 px-4 py-4">
-                  {row.examDate}
+                  {new Date(row.examDate).toLocaleDateString()}
                 </td>
                 <td className="border border-gray-300 px-4 py-3">
-                  <NavLink to={"/sit-plan"}>
-                    <button className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 flex items-center gap-2">
-                      <FontAwesomeIcon icon={faCarSide} /> Book
-                    </button>
-                  </NavLink>
+                  <button
+                    onClick={() => handleBookClick(row)}
+                    className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 flex items-center gap-2"
+                  >
+                    <FontAwesomeIcon icon={faCarSide} /> Book
+                  </button>
                 </td>
               </tr>
             ))}
