@@ -3,7 +3,7 @@ import bus from "../assets/buss.jpg";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const BusSitPlanDetails = () => {
   const location = useLocation();
@@ -261,9 +261,11 @@ const BusSitPlanDetails = () => {
                     No seats selected.
                   </p>
                 )}
-                <button className="bg-green-600 text-white w-full py-2 rounded-lg mt-4 hover:bg-green-700 transition">
-                  Book Now
-                </button>
+                <NavLink to={"/single-sit-plan"}>
+                  <button className="bg-green-600 text-white w-full py-2 rounded-lg mt-4 hover:bg-green-700 transition">
+                    Book Now
+                  </button>
+                </NavLink>
               </div>
             </div>
           )}

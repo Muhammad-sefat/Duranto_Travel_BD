@@ -14,6 +14,7 @@ import DownloadsPage from "./dashboard/DownloadsPage";
 import AddressPage from "./dashboard/AddressPage";
 import AccountDetailsPage from "./dashboard/AccountDetailsPage";
 import LogoutPage from "./dashboard/LogoutPage";
+import SingleSitDetails from "./pages/SingleSitDetails";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/sit-plan",
         element: <BusSitPlanDetails />,
+      },
+      {
+        path: "/single-sit-plan",
+        element: <SingleSitDetails />,
       },
       {
         path: "/main-dashboard",
