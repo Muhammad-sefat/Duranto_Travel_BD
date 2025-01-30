@@ -14,6 +14,12 @@ const SingleSitDetails = () => {
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("cash");
 
+  // Calculate total price dynamically
+  const pricePerSeat = busData.price;
+  const subtotal = selectedSeats.length * pricePerSeat;
+  const bkashCharge = 90;
+  const total = subtotal + bkashCharge;
+
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* billing information */}
@@ -86,96 +92,64 @@ const SingleSitDetails = () => {
         <h2 className="text-2xl font-bold mb-4">Your Order</h2>
         <div className="border border-gray-300 rounded-lg p-4 bg-white">
           <div className="mb-4">
-            <h1 className="text-green-600 text-lg font-semibold my-2">
-              JU( Jahangirnagar University) A-Unit(Male)(Bus-4) × 1
+            <h1 className="text-green-600 text-xl font-semibold my-2">
+              {busData.to}
             </h1>
             <h3 className="text-lg font-semibold mb-2">Booking Details :</h3>
             <div className="border rounded p-5">
               <p className="text-gray-600">
-                <strong>Boarding : </strong> Boro Pull, Hailshour, Chittagong
-                (February 12, 2025, 9:00 PM)
+                <strong>Boarding: </strong>
+                {busData.from}
               </p>
               <p className="text-gray-600">
-                <strong>Dropping : </strong> JU, Jahangirnagar University
-                (February 13, 2025, 6:00 AM)
+                <strong>Dropping: </strong>
+                {busData.to}
+              </p>
+              <p className="text-gray-600">
+                <strong>Journey Date: </strong>
+                {journeyDate instanceof Date
+                  ? journeyDate.toLocaleDateString()
+                  : new Date(journeyDate).toLocaleDateString()}
               </p>
             </div>
           </div>
           <div className="border-t pt-4">
             <h3 className="text-xl font-semibold my-2">Ticket Information :</h3>
             <div className="border rounded p-5">
-              <div>
-                <p>
-                  <span className="text-base font-medium">Seat Type</span> :{" "}
-                  <span>Adult</span>
-                </p>
-                <p>
-                  <span className="text-base font-medium">Seat</span> :{" "}
-                  <span>F3</span>
-                </p>
-                <p>
-                  <span className="text-base font-medium"> Quantity</span> :{" "}
-                  <span>1</span>
-                </p>
-                <p>
-                  <span className="text-base font-medium">Price </span>:{" "}
-                  <span>( 1,500.00৳ x 1 ) = 1,500.00৳ </span>
-                </p>
-              </div>
-              <hr className="my-2" />
-              <div>
-                <p>
-                  <span className="text-base font-medium">Seat Type</span> :{" "}
-                  <span>Adult</span>
-                </p>
-                <p>
-                  <span className="text-base font-medium">Seat</span> :{" "}
-                  <span>F3</span>
-                </p>
-                <p>
-                  <span className="text-base font-medium"> Quantity</span> :{" "}
-                  <span>1</span>
-                </p>
-                <p>
-                  <span className="text-base font-medium">Price </span>:{" "}
-                  <span>( 1,500.00৳ x 1 ) = 1,500.00৳ </span>
-                </p>
-              </div>
-              <hr className="my-2" />
-              <div>
-                <p>
-                  <span className="text-base font-medium">Seat Type</span> :{" "}
-                  <span>Adult</span>
-                </p>
-                <p>
-                  <span className="text-base font-medium">Seat</span> :{" "}
-                  <span>F3</span>
-                </p>
-                <p>
-                  <span className="text-base font-medium"> Quantity</span> :{" "}
-                  <span>1</span>
-                </p>
-                <p>
-                  <span className="text-base font-medium">Price </span>:{" "}
-                  <span>( 1,500.00৳ x 1 ) = 1,500.00৳ </span>
-                </p>
-              </div>
+              {selectedSeats.length > 0 ? (
+                selectedSeats.map((seat, index) => (
+                  <div key={index} className="p-3 border rounded-md my-2">
+                    <p>
+                      <strong>Seat Number:</strong> {seat.seatNumber}
+                    </p>
+                    <p>
+                      <strong>Seat Type:</strong> {seat.type}
+                    </p>
+                    <p>
+                      <strong>Price:</strong> {seat.price}৳
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <p>No seats selected</p>
+              )}
+
               <hr className="my-2" />
             </div>
             <hr />
             <div className="flex justify-between items-center my-4">
               <p className="text-lg font-bold">SubTotal</p>
-              <p className="text-lg font-bold">6,000 ৳</p>
+              <p className="text-lg font-bold">{subtotal} ৳</p>
             </div>
             <hr className="w-full" />
             <div className="flex justify-between items-center my-4">
               <p className="text-lg font-bold">Bkash Charge</p>
-              <p className="text-lg font-bold">90 ৳</p>
+              <p className="text-lg font-bold">{bkashCharge} ৳</p>
             </div>
             <hr className="w-full" />
             <div className="flex justify-between items-center my-4">
               <p className="text-lg font-bold">Total</p>
-              <p className="text-lg font-bold">6,090 ৳</p>
+              <p className="text-lg font-bold">{total} ৳</p>
             </div>
           </div>
         </div>
