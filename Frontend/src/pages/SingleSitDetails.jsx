@@ -1,7 +1,19 @@
 import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const SingleSitDetails = () => {
+  const location = useLocation();
+  const {
+    selectedSeats = [],
+    busData,
+    from,
+    to,
+    journeyDate,
+  } = location.state || {};
+  console.log(selectedSeats);
+
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("cash");
+
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* billing information */}
@@ -74,25 +86,97 @@ const SingleSitDetails = () => {
         <h2 className="text-2xl font-bold mb-4">Your Order</h2>
         <div className="border border-gray-300 rounded-lg p-4 bg-white">
           <div className="mb-4">
-            <h3 className="text-lg font-semibold">Booking Details</h3>
-            <p className="text-gray-600">
-              <strong>Boarding:</strong> Boro Pull, Hailshour, Chittagong
-              (February 12, 2025, 9:00 PM)
-            </p>
-            <p className="text-gray-600">
-              <strong>Dropping:</strong> JU, Jahangirnagar University (February
-              13, 2025, 6:00 AM)
-            </p>
+            <h1 className="text-green-600 text-lg font-semibold my-2">
+              JU( Jahangirnagar University) A-Unit(Male)(Bus-4) × 1
+            </h1>
+            <h3 className="text-lg font-semibold mb-2">Booking Details :</h3>
+            <div className="border rounded p-5">
+              <p className="text-gray-600">
+                <strong>Boarding : </strong> Boro Pull, Hailshour, Chittagong
+                (February 12, 2025, 9:00 PM)
+              </p>
+              <p className="text-gray-600">
+                <strong>Dropping : </strong> JU, Jahangirnagar University
+                (February 13, 2025, 6:00 AM)
+              </p>
+            </div>
           </div>
           <div className="border-t pt-4">
-            <h3 className="text-lg font-semibold">Ticket Information</h3>
-            <ul className="text-gray-600">
-              <li>Seat F3 - 1,500৳</li>
-              <li>Seat F4 - 1,500৳</li>
-              <li>Seat G3 - 1,500৳</li>
-              <li>Seat G4 - 1,500৳</li>
-            </ul>
-            <p className="text-right font-bold mt-4">Total: 6,000৳</p>
+            <h3 className="text-xl font-semibold my-2">Ticket Information :</h3>
+            <div className="border rounded p-5">
+              <div>
+                <p>
+                  <span className="text-base font-medium">Seat Type</span> :{" "}
+                  <span>Adult</span>
+                </p>
+                <p>
+                  <span className="text-base font-medium">Seat</span> :{" "}
+                  <span>F3</span>
+                </p>
+                <p>
+                  <span className="text-base font-medium"> Quantity</span> :{" "}
+                  <span>1</span>
+                </p>
+                <p>
+                  <span className="text-base font-medium">Price </span>:{" "}
+                  <span>( 1,500.00৳ x 1 ) = 1,500.00৳ </span>
+                </p>
+              </div>
+              <hr className="my-2" />
+              <div>
+                <p>
+                  <span className="text-base font-medium">Seat Type</span> :{" "}
+                  <span>Adult</span>
+                </p>
+                <p>
+                  <span className="text-base font-medium">Seat</span> :{" "}
+                  <span>F3</span>
+                </p>
+                <p>
+                  <span className="text-base font-medium"> Quantity</span> :{" "}
+                  <span>1</span>
+                </p>
+                <p>
+                  <span className="text-base font-medium">Price </span>:{" "}
+                  <span>( 1,500.00৳ x 1 ) = 1,500.00৳ </span>
+                </p>
+              </div>
+              <hr className="my-2" />
+              <div>
+                <p>
+                  <span className="text-base font-medium">Seat Type</span> :{" "}
+                  <span>Adult</span>
+                </p>
+                <p>
+                  <span className="text-base font-medium">Seat</span> :{" "}
+                  <span>F3</span>
+                </p>
+                <p>
+                  <span className="text-base font-medium"> Quantity</span> :{" "}
+                  <span>1</span>
+                </p>
+                <p>
+                  <span className="text-base font-medium">Price </span>:{" "}
+                  <span>( 1,500.00৳ x 1 ) = 1,500.00৳ </span>
+                </p>
+              </div>
+              <hr className="my-2" />
+            </div>
+            <hr />
+            <div className="flex justify-between items-center my-4">
+              <p className="text-lg font-bold">SubTotal</p>
+              <p className="text-lg font-bold">6,000 ৳</p>
+            </div>
+            <hr className="w-full" />
+            <div className="flex justify-between items-center my-4">
+              <p className="text-lg font-bold">Bkash Charge</p>
+              <p className="text-lg font-bold">90 ৳</p>
+            </div>
+            <hr className="w-full" />
+            <div className="flex justify-between items-center my-4">
+              <p className="text-lg font-bold">Total</p>
+              <p className="text-lg font-bold">6,090 ৳</p>
+            </div>
           </div>
         </div>
       </div>
@@ -138,6 +222,14 @@ const SingleSitDetails = () => {
               </button>
             </div>
           </div>
+
+          {selectedPaymentMethod === "cash" && (
+            <div className="mt-4 text-gray-600">
+              <p className="text-base font-semibold my-4">
+                Pay with cash upon delivery.
+              </p>
+            </div>
+          )}
 
           {selectedPaymentMethod === "bkash" && (
             <div className="mt-4 text-gray-600">
