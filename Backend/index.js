@@ -4,6 +4,7 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/errorHandler");
 const busRoutes = require("./routes/busRoute");
+const orderRoutes = require("./routes/OrderRoutes");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -20,6 +21,7 @@ app.use(errorHandler);
 
 // Other middleware and setup
 app.use("/api/buses", busRoutes);
+app.use("/api/orders", orderRoutes);
 
 // Root Route
 app.get("/", (req, res) => {

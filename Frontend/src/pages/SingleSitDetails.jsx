@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
+import axios from "axios";
 
 const SingleSitDetails = () => {
+  const { user } = useAuth();
   const location = useLocation();
-  const {
-    selectedSeats = [],
-    busData,
-    from,
-    to,
-    journeyDate,
-  } = location.state || {};
-  console.log(selectedSeats);
+  const { selectedSeats = [], busData, journeyDate } = location.state || {};
+  const [userName, setUserName] = useState("");
+  const [guardianPhone, setGuardianPhone] = useState("");
+  const [studentPhone, setStudentPhone] = useState("");
+  const [studentText, setStudentText] = useState("");
+  const [transactionId, setTransactionId] = useState("");
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("cash");
 
@@ -19,6 +20,47 @@ const SingleSitDetails = () => {
   const subtotal = selectedSeats.length * pricePerSeat;
   const bkashCharge = 90;
   const total = subtotal + bkashCharge;
+
+  const handlePlaceOrder = async () => {
+    if (!userName || !guardianPhone || !studentPhone) {
+      alert("Please fill in all required fields!");
+      return;
+    }
+
+    const orderData = {
+      email: user.email,
+      name: userName,
+      guardianPhoneNumber: guardianPhone,
+      studentPhoneNumber: studentPhone,
+      paymentMethod: selectedPaymentMethod,
+      transactionId: selectedPaymentMethod !== "cash" ? transactionId : null,
+      selectedSeats,
+      busData,
+      journeyDate,
+      totalPrice: total,
+      orderNotes: studentText,
+    };
+    console.log(orderData);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/orders/place-order",
+        orderData,
+        {
+          headers: { "Content-Type": "application/json" }, // Ensures JSON format
+        }
+      ); // Replace with your backend URL
+      if (response.status === 201) {
+        alert("Order placed successfully!");
+        // Optional: Redirect user or clear the form
+      } else {
+        alert("Failed to place the order. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error placing order:", error);
+      alert("An error occurred. Please try again.");
+    }
+  };
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -35,6 +77,8 @@ const SingleSitDetails = () => {
                 type="text"
                 className="mt-1 block p-3 w-full rounded-md border-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Enter your name"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
               />
             </label>
 
@@ -46,6 +90,8 @@ const SingleSitDetails = () => {
                 type="text"
                 className="mt-1 block p-3 w-full rounded-md border-2  shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Enter guardian's phone number"
+                value={guardianPhone}
+                onChange={(e) => setGuardianPhone(e.target.value)}
               />
             </label>
 
@@ -55,6 +101,8 @@ const SingleSitDetails = () => {
                 type="text"
                 className="mt-1 block p-3 w-full rounded-md border-2 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 placeholder="Enter student phone number"
+                value={studentPhone}
+                onChange={(e) => setStudentPhone(e.target.value)}
               />
             </label>
 
@@ -82,6 +130,8 @@ const SingleSitDetails = () => {
                 className="mt-1 block p-3 w-full rounded-md border-2  shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                 rows="6"
                 placeholder="Notes about your order, e.g. special notes for delivery."
+                value={studentText}
+                onChange={(e) => setStudentText(e.target.value)}
               ></textarea>
             </label>
           </div>
@@ -198,10 +248,8 @@ const SingleSitDetails = () => {
           </div>
 
           {selectedPaymentMethod === "cash" && (
-            <div className="mt-4 text-gray-600">
-              <p className="text-base font-semibold my-4">
-                Pay with cash upon delivery.
-              </p>
+            <div className="mt-4 text-gray-600 my-5">
+              <p className="mb-2">1. Go to your Rocket app or dial *247#</p>
             </div>
           )}
 
@@ -242,7 +290,10 @@ const SingleSitDetails = () => {
               <span className="text-red-700">Privacy policy</span>.
             </p>
             <div className="text-right">
-              <button className="px-4 py-2 text-base font-semibold rounded-md bg-violet-800 text-white border-none">
+              <button
+                onClick={handlePlaceOrder}
+                className="px-4 py-2 text-base font-semibold rounded-md bg-violet-800 text-white border-none"
+              >
                 Place Order
               </button>
             </div>
