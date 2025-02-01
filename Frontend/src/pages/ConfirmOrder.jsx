@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 
@@ -10,7 +10,7 @@ const ConfirmOrder = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/orders/${user.email}`
+          `http://localhost:5000/api/order/${user.email}`
         );
         setOrders(response.data);
       } catch (error) {

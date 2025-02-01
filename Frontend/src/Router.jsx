@@ -15,6 +15,7 @@ import AddressPage from "./dashboard/AddressPage";
 import AccountDetailsPage from "./dashboard/AccountDetailsPage";
 import LogoutPage from "./dashboard/LogoutPage";
 import SingleSitDetails from "./pages/SingleSitDetails";
+import ConfirmOrder from "./pages/ConfirmOrder";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/single-sit-plan",
         element: <SingleSitDetails />,
+      },
+      {
+        path: "/confirm-order",
+        element: <ConfirmOrder />,
       },
       {
         path: "/main-dashboard",

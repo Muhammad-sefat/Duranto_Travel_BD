@@ -56,5 +56,33 @@ const placeOrder = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+// Get Orders by User Email
+const getOrdersByEmail = async (req, res) => {
+  try {
+    const { email } = req.params;
+    const orders = await Order.find({ email });
+    console.log(orders);
 
-module.exports = { placeOrder };
+    if (!orders.length) {
+      return res
+        .status(404)
+        .json({ message: "No orders found for this email" });
+    }
+
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching orders", error });
+  }
+};
+
+// Get All Orders (Admin)
+const getAllOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({});
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching all orders", error });
+  }
+};
+
+module.exports = { placeOrder, getOrdersByEmail, getAllOrders };

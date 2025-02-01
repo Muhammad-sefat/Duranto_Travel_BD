@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const SingleSitDetails = () => {
   const { user } = useAuth();
@@ -47,14 +48,13 @@ const SingleSitDetails = () => {
         "http://localhost:5000/api/orders/place-order",
         orderData,
         {
-          headers: { "Content-Type": "application/json" }, // Ensures JSON format
+          headers: { "Content-Type": "application/json" },
         }
-      ); // Replace with your backend URL
+      );
       if (response.status === 201) {
-        alert("Order placed successfully!");
-        // Optional: Redirect user or clear the form
+        toast.success("Order placed successfully!");
       } else {
-        alert("Failed to place the order. Please try again.");
+        toast.error("Failed to place the order. Please try again.");
       }
     } catch (error) {
       console.error("Error placing order:", error);
@@ -290,12 +290,14 @@ const SingleSitDetails = () => {
               <span className="text-red-700">Privacy policy</span>.
             </p>
             <div className="text-right">
-              <button
-                onClick={handlePlaceOrder}
-                className="px-4 py-2 text-base font-semibold rounded-md bg-violet-800 text-white border-none"
-              >
-                Place Order
-              </button>
+              <NavLink to={"/confirm-order"}>
+                <button
+                  onClick={handlePlaceOrder}
+                  className="px-4 py-2 text-base font-semibold rounded-md bg-violet-800 text-white border-none"
+                >
+                  Place Order
+                </button>
+              </NavLink>
             </div>
           </div>
         </div>
