@@ -1,9 +1,10 @@
 import React from "react";
+import ConfirmOrder from "../pages/ConfirmOrder";
 
 const OrdersPage = () => {
   return (
     <div>
-      <p>this orders page</p>
+      <ConfirmOrder />
     </div>
   );
 };

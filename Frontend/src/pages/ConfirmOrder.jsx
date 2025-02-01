@@ -5,13 +5,12 @@ import axios from "axios";
 const ConfirmOrder = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
-  console.log(user);
-  console.log(orders);
+
   useEffect(() => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/orders/${user.email}`
+          `http://localhost:5000/api/orders/${user?.email}`
         );
         setOrders(response.data);
       } catch (error) {
@@ -22,80 +21,133 @@ const ConfirmOrder = () => {
     fetchOrders();
   }, [user]);
 
+  if (orders.length === 0) {
+    return <p>Loading order details...</p>;
+  }
+
   return (
     <div className="p-10">
-      <h1 className="text-xl font-semibold text-center my-10">
+      <h1 className="text-xl font-semibold my-10">
         Thank you. Your order has been received.
       </h1>
 
-      {/* Order Summary */}
-      <div className="grid grid-cols-2 gap-4 mb-8">
-        <div>
-          <p className="text-sm font-medium">ORDER NUMBER:</p>
-          <p>2046</p>
-        </div>
+      {/* Iterate Over Orders */}
+      {orders.map((order, index) => {
+        const {
+          busData,
+          name,
+          guardianPhoneNumber,
+          studentPhoneNumber,
+          selectedSeats,
+          journeyDate,
+          paymentMethod,
+          transactionId,
+          totalPrice,
+          orderNotes,
+          updatedAt,
+          _id,
+        } = order;
 
-        <div>
-          <p className="text-sm font-medium">DATE:</p>
-          <p>February 1, 2025</p>
-        </div>
-        <div>
-          <p className="text-sm font-medium">EMAIL:</p>
-          <p>sifat5521.chaldaall@gmail.com</p>
-        </div>
-        <div>
-          <p className="text-sm font-medium">TOTAL:</p>
-          <p>1,015.00</p>
-        </div>
-        <div>
-          <p className="text-sm font-medium">PAYMENT METHOD:</p>
-          <p>bkash</p>
-        </div>
-      </div>
+        return (
+          <div key={_id} className="mb-10">
+            {/* Order Summary */}
+            <div className="flex justify-between items-center gap-4 mb-8">
+              <div>
+                <p className="text-base font-bold">ORDER NUMBER:</p>
+                <p>{_id}</p>
+              </div>
 
-      {/* Order Details */}
-      <div className="border rounded-lg p-4 mb-8">
-        <h2 className="text-lg font-semibold mb-4">Order details</h2>
+              <div>
+                <p className="text-base font-bold">DATE:</p>
+                <p>{new Date(updatedAt).toLocaleDateString()}</p>
+              </div>
+              <div>
+                <p className="text-base font-bold">EMAIL:</p>
+                <p>{user?.email}</p>
+              </div>
+              <div>
+                <p className="text-base font-bold">TOTAL:</p>
+                <p>{totalPrice} BDT</p>
+              </div>
+              <div>
+                <p className="text-base font-bold">PAYMENT METHOD:</p>
+                <p>{paymentMethod}</p>
+              </div>
+            </div>
 
-        <div className="border-b pb-4 mb-4">
-          <p className="font-semibold">
-            Chattagong University (CU) (Unit-D) &times; 1
-          </p>
-          <p>Boarding: (ChawkBazar) Chattagong (March 22, 2025 8:00 am)</p>
-          <p>Dropping: Chattagong University (CU) (March 22, 2025 9:00 am)</p>
-          <p>Seat Type: Adult</p>
-          <p>Seat: D3</p>
-          <p>Price: (250.00 &times; 1) = 250.00</p>
-        </div>
+            {/* Order Details */}
+            <div className="border rounded-lg p-4 mb-8">
+              <h2 className="text-2xl font-semibold mb-4">Order Details</h2>
+              <div className="mb-4">
+                <p className="font-semibold text-lg">{busData.to} &times; 1</p>
+                <p>
+                  <strong>Boarding:</strong> {busData.from} (
+                  {new Date(journeyDate).toLocaleDateString()}{" "}
+                  {new Date(journeyDate).toLocaleTimeString()})
+                </p>
+                <p>
+                  <strong>Dropping:</strong> {busData.to} (
+                  {new Date(journeyDate).toLocaleDateString()}{" "}
+                  {new Date(journeyDate).toLocaleTimeString()})
+                </p>
+              </div>
 
-        <div className="border-b pb-4 mb-4">
-          <p>Seat: E4</p>
-          <p>Price: (250.00 &times; 1) = 250.00</p>
-        </div>
+              {selectedSeats.map((seat, seatIndex) => (
+                <div key={seatIndex} className="border-b pb-4 mb-4">
+                  <hr className="my-2" />
+                  <p>
+                    <strong>Seat Type :</strong> {seat.type}{" "}
+                  </p>
+                  <p>
+                    <strong>Seat :</strong> {seat.seatNumber}{" "}
+                  </p>
+                  <p>
+                    <strong>Price :</strong> ({seat.price} &times; 1) ={" "}
+                    {seat.price} BDT
+                  </p>
+                </div>
+              ))}
 
-        <div className="border-b pb-4 mb-4">
-          <p>Seat: F3</p>
-          <p>Price: (250.00 &times; 1) = 250.00</p>
-        </div>
+              <p className="font-semibold">
+                <strong>Total Quantity :</strong> {selectedSeats.length}
+              </p>
+              <p className="font-semibold">
+                <strong>Ticket Sub Total :</strong> {totalPrice - 15} BDT
+              </p>
+              <p className="font-semibold">
+                <strong>Order Total :</strong> {totalPrice} BDT
+              </p>
+            </div>
 
-        <p className="font-semibold">Total Quantity: 4</p>
-        <p className="font-semibold">Ticket Sub Total: 1,000.00</p>
-        <p className="font-semibold">Order Total: 1,000.00</p>
-      </div>
+            {/* Billing Details */}
+            <div className="border rounded-lg p-4 mb-8">
+              <h2 className="text-lg font-semibold mb-4">Billing Address</h2>
 
-      {/* Billing Details */}
-      <div className="border rounded-lg p-4 mb-8">
-        <h2 className="text-lg font-semibold mb-4">Billing address</h2>
+              <p>
+                <strong>Name :</strong> {name}
+              </p>
+              <p>
+                <strong>Guardian Phone Number :</strong> {guardianPhoneNumber}
+              </p>
+              <p>
+                <strong>Student Phone Number :</strong> {studentPhoneNumber}
+              </p>
+              <p>
+                <strong>Email :</strong> {user?.email}
+              </p>
 
-        <p>muhammad sefat</p>
-        <p>01996993330</p>
-        <p>sifat5521.chaldaall@gmail.com</p>
-
-        <div className="mt-4">
-          <p>Bkash Account Number: 01996993330</p>
-          <p>Transaction ID: 028Yt625Z843</p>
-        </div>
-      </div>
+              <div className="mt-4">
+                <p>
+                  <strong>Transaction ID :</strong> {transactionId || "N/A"}
+                </p>
+                <p>
+                  <strong>Order Notes :</strong> {orderNotes}
+                </p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };
