@@ -59,9 +59,8 @@ const placeOrder = async (req, res) => {
 // Get Orders by User Email
 const getOrdersByEmail = async (req, res) => {
   try {
-    const { email } = req.params;
+    const { email } = req.params.email;
     const orders = await Order.find({ email });
-    console.log(orders);
 
     if (!orders.length) {
       return res
