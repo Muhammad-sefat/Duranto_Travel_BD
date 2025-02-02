@@ -5,6 +5,8 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signOut,
+  updatePassword,
+  updateProfile,
 } from "firebase/auth";
 import app from "../firebase/Firebase.config";
 
@@ -33,6 +35,21 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
+  const updateName = (name) => {
+    if (auth.currentUser) {
+      return updateProfile(auth.currentUser, { displayName: name });
+    } else {
+      return Promise.reject("No user is logged in.");
+    }
+  };
+
+  const changePassword = (newPassword) => {
+    if (auth.currentUser) {
+      return updatePassword(auth.currentUser, newPassword);
+    } else {
+      return Promise.reject("No user is logged in.");
+    }
+  };
 
   const logOut = () => {
     return signOut(auth);
@@ -43,6 +60,8 @@ const AuthProvider = ({ children }) => {
     loading,
     creatUser,
     signIn,
+    updateName,
+    changePassword,
     logOut,
   };
   return (

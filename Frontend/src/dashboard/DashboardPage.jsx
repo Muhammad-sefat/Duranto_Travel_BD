@@ -4,7 +4,6 @@ import useAuth from "../hooks/useAuth";
 
 const DashboardPage = () => {
   const { user, logOut } = useAuth();
-  console.log(user);
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
