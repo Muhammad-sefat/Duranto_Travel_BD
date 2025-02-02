@@ -29,7 +29,6 @@ const AccountDetailsPage = () => {
       }
       setMessage("Account Update Successfully");
 
-      // Clear inputs after update
       setCurrentPassword("");
       setNewPassword("");
     } catch (error) {
@@ -41,7 +40,9 @@ const AccountDetailsPage = () => {
     <div className="p-6 max-w-2xl mx-auto bg-white border border-gray-200 rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Account Details</h2>
 
-      {message && <p className="mb-4 text-green-500">{message}</p>}
+      {message && (
+        <p className="mb-4 text-green-500 font-medium text-base">{message}</p>
+      )}
 
       <form onSubmit={handleSubmit}>
         {/* Name Update */}
