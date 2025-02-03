@@ -46,7 +46,7 @@ const SingleSitDetails = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/orders/place-order",
+        "https://duranto-backend.vercel.app/api/orders/place-order",
         orderData,
         {
           headers: { "Content-Type": "application/json" },

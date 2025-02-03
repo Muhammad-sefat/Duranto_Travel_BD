@@ -9,7 +9,7 @@ const Table = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/buses")
+    fetch("https://duranto-backend.vercel.app/api/buses")
       .then((response) => response.json())
       .then((data) => setBuses(data))
       .catch((error) => console.error("Error fetching bus data:", error));

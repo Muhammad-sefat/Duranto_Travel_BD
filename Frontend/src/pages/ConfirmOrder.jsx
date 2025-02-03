@@ -10,7 +10,7 @@ const ConfirmOrder = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/orders/${user?.email}`
+          `https://duranto-backend.vercel.app/api/orders/${user?.email}`
         );
         setOrders(response.data);
       } catch (error) {

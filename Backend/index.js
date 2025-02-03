@@ -10,7 +10,12 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: ["https://durantotravelbd.web.app"],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Database connection
