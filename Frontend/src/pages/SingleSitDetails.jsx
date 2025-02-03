@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -13,6 +13,7 @@ const SingleSitDetails = () => {
   const [studentPhone, setStudentPhone] = useState("");
   const [studentText, setStudentText] = useState("");
   const [transactionId, setTransactionId] = useState("");
+  const navigate = useNavigate();
 
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("cash");
 
@@ -53,6 +54,7 @@ const SingleSitDetails = () => {
       );
       if (response.status === 201) {
         toast.success("Order placed successfully!");
+        navigate("/confirm-order");
       } else {
         toast.error("Failed to place the order. Please try again.");
       }
@@ -249,7 +251,7 @@ const SingleSitDetails = () => {
 
           {selectedPaymentMethod === "cash" && (
             <div className="mt-4 text-gray-600 my-5">
-              <p className="mb-2">1. Go to your Rocket app or dial *247#</p>
+              <p className="mb-2">Pay your bill with passion</p>
             </div>
           )}
 
@@ -258,12 +260,14 @@ const SingleSitDetails = () => {
               <p className="mb-2">1. Go to your Rocket app or dial *247#</p>
               <p className="mb-2">2. Choose "Send Money"</p>
               <p className="mb-2">3. Enter our account number: 01967000333</p>
-              <p className="mb-2">4. Enter the amount: 6,090৳</p>
+              <p className="mb-2">4. Enter the amount: {total}৳</p>
               <p>5. Copy the Transaction ID and paste it below:</p>
               <input
                 type="text"
                 placeholder="Transaction ID"
                 className="w-full border border-gray-300 rounded-lg p-2 mt-2"
+                value={transactionId}
+                onChange={(e) => setTransactionId(e.target.value)}
               />
             </div>
           )}
@@ -273,12 +277,17 @@ const SingleSitDetails = () => {
               <p className="mb-2">1. Open your Nagad app or dial *167#</p>
               <p className="mb-2">2. Select "Send Money"</p>
               <p className="mb-2">3. Enter our account number: 01967000333</p>
-              <p className="mb-2">4. Enter the amount: 6,090৳</p>
+              <p className="mb-2">
+                4. Enter the amount:
+                {total}৳
+              </p>
               <p>5. Copy the Transaction ID and paste it below:</p>
               <input
                 type="text"
                 placeholder="Transaction ID"
                 className="w-full border border-gray-300 rounded-lg p-2 mt-2"
+                value={transactionId}
+                onChange={(e) => setTransactionId(e.target.value)}
               />
             </div>
           )}
@@ -290,14 +299,12 @@ const SingleSitDetails = () => {
               <span className="text-red-700">Privacy policy</span>.
             </p>
             <div className="text-right">
-              <NavLink to={"/confirm-order"}>
-                <button
-                  onClick={handlePlaceOrder}
-                  className="px-4 py-2 text-base font-semibold rounded-md bg-violet-800 text-white border-none"
-                >
-                  Place Order
-                </button>
-              </NavLink>
+              <button
+                onClick={handlePlaceOrder}
+                className="px-4 py-2 text-base font-semibold rounded-md bg-violet-800 text-white border-none"
+              >
+                Place Order
+              </button>
             </div>
           </div>
         </div>

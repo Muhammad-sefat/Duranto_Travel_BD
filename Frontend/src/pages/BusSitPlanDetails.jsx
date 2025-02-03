@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import bus from "../assets/buss.jpg";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
@@ -7,8 +7,16 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 const BusSitPlanDetails = () => {
   const location = useLocation();
-  const { busData } = location.state || {};
   const navigate = useNavigate();
+  const { busData: stateBusData } = location.state || {};
+
+  const [busData, setBusData] = useState(stateBusData || null);
+
+  useEffect(() => {
+    if (!stateBusData) {
+      navigate("/");
+    }
+  }, [stateBusData, navigate]);
 
   const [from, setFrom] = useState(null);
   const [to, setTo] = useState(null);
@@ -78,10 +86,10 @@ const BusSitPlanDetails = () => {
 
         <div>
           <div className="border p-5 rounded">
-            <p className="font-bold text-lg text-green-600">{busData.to}</p>
+            <p className="font-bold text-lg text-green-600">{busData?.to}</p>
             <hr className="my-3" />
             <div className="text-base font-medium">
-              <p>Coach Type : {busData.busType}</p>
+              <p>Coach Type : {busData?.busType}</p>
               <p>Passenger Capacity : 40</p>
             </div>
           </div>
@@ -90,12 +98,12 @@ const BusSitPlanDetails = () => {
             <div className="border p-5 rounded">
               <p className="text-xl font-semibold">Boarding</p>
               <hr className="my-3" />
-              <p> 📍 {busData.from}</p>
+              <p> 📍 {busData?.from}</p>
             </div>
             <div className="border p-5 rounded">
               <p className="text-xl font-semibold">Droping</p>{" "}
               <hr className="my-3" />
-              <p> 📍 {busData.to}</p>
+              <p> 📍 {busData?.to}</p>
             </div>
           </div>
         </div>
@@ -164,7 +172,7 @@ const BusSitPlanDetails = () => {
               <div className="flex-shrink-0 flex justify-center items-center">
                 <img src={bus} alt="Bus" className="w-24 object-cover" />
               </div>
-              <p className="font-bold text-lg text-green-600">{busData.to}</p>
+              <p className="font-bold text-lg text-green-600">{busData?.to}</p>
             </div>
             <div className="md:w-[25%]">
               <p className="text-gray-700">
@@ -177,7 +185,7 @@ const BusSitPlanDetails = () => {
             </div>
             <div className="md:w-[45%] flex justify-between items-center gap-5 text-center">
               <div className="text-gray-700">
-                <p className="text-lg font-medium">{busData.busType}</p>
+                <p className="text-lg font-medium">{busData?.busType}</p>
                 <p>Coach Type</p>
               </div>
               <div className="text-gray-700">
@@ -185,7 +193,7 @@ const BusSitPlanDetails = () => {
                 <p> 34/40</p>
               </div>
               <div className="text-gray-700 font-bold">
-                <p className="text-lg font-medium">{busData.price}৳ </p>
+                <p className="text-lg font-medium">{busData?.price}৳ </p>
                 <p>Fare/Seat</p>
               </div>
               <button

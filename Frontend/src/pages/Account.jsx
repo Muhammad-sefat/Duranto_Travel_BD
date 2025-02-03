@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useAuth from "../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Account = () => {
@@ -12,6 +12,8 @@ const Account = () => {
   const [message, setMessage] = useState({ type: "", content: "" });
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from || "/main-dashboard";
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -21,7 +23,7 @@ const Account = () => {
         toast.error(result.error, { position: "top-right" });
       } else {
         toast.success("Registration successful!", { position: "top-right" });
-        navigate("/main-dashboard");
+        navigate(from, { replace: true });
       }
     } catch (error) {
       toast.error(error.message || "An unexpected error occurred.", {
@@ -38,7 +40,7 @@ const Account = () => {
         toast.error(result.error, { position: "top-right" });
       } else {
         toast.success("Login successful!", { position: "top-right" });
-        navigate("/main-dashboard");
+        navigate(from, { replace: true });
       }
     } catch (error) {
       toast.error(error.message || "An unexpected error occurred.", {

@@ -13,9 +13,10 @@ const Table = () => {
       .then((response) => response.json())
       .then((data) => setBuses(data))
       .catch((error) => console.error("Error fetching bus data:", error));
-  }, []);
+  }, [buses]);
 
   const handleBookClick = (busData) => {
+    console.log(busData);
     navigate("/sit-plan", { state: { busData } });
   };
 

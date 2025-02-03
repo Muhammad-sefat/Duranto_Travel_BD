@@ -16,6 +16,7 @@ import AccountDetailsPage from "./dashboard/AccountDetailsPage";
 import LogoutPage from "./dashboard/LogoutPage";
 import SingleSitDetails from "./pages/SingleSitDetails";
 import ConfirmOrder from "./pages/ConfirmOrder";
+import ProtectedRoute from "./component/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +49,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/sit-plan",
-        element: <BusSitPlanDetails />,
+        element: (
+          <ProtectedRoute>
+            <BusSitPlanDetails />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/single-sit-plan",
