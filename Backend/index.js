@@ -5,13 +5,13 @@ const connectDB = require("./config/db");
 const errorHandler = require("./middleware/errorHandler");
 const busRoutes = require("./routes/busRoute");
 const orderRoutes = require("./routes/OrderRoutes");
-
+const seatRoutes = require("./routes/SeatRoute");
 const PORT = process.env.PORT || 5000;
 const app = express();
 
 // Middleware
 const corsOptions = {
-  origin: ["https://durantotravelbd.web.app"],
+  origin: ["https://durantotravelbd.web.app", "http://localhost:5173"],
   credentials: true,
   optionsSuccessStatus: 200,
 };
@@ -27,6 +27,8 @@ app.use(errorHandler);
 // Other middleware and setup
 app.use("/api/buses", busRoutes);
 app.use("/api/orders", orderRoutes);
+// Use the seat reservation routes
+app.use("/api/seats", seatRoutes);
 
 // Root Route
 app.get("/", (req, res) => {

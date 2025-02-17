@@ -10,7 +10,7 @@ const Navbar = () => {
   const { user } = useAuth();
   return (
     <div>
-      <div className="fixed w-full top-0 z-20 bg-[rgb(8,20,51)] text-white shadow-md">
+      <div className="hidden sm:block fixed w-full top-0 z-20 bg-[rgb(8,20,51)] text-white shadow-md">
         <div className="flex items-center justify-between px-6 py-4">
           <div className="flex items-center gap-2">
             <FontAwesomeIcon icon={faFacebook} />
@@ -32,9 +32,9 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-      {/* main navbar */}
+      {/* Main navbar */}
       <div className="navbar bg-base-100 px-12 mx-auto mt-16">
-        <div className="navbar-start">
+        <div className="navbar-start sm:flex gap-6">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -81,6 +81,7 @@ const Navbar = () => {
 
           <img className="w-14 h-14" src={image} alt="" />
         </div>
+        {/* This part ensures navbar is visible only on medium and larger screens */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-base font-semibold text-gray-500">
             <li>

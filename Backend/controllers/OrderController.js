@@ -4,6 +4,7 @@ const Order = require("../models/Order");
 const placeOrder = async (req, res) => {
   try {
     const {
+      email,
       name,
       guardianPhoneNumber,
       studentPhoneNumber,
@@ -18,6 +19,7 @@ const placeOrder = async (req, res) => {
 
     // Validate required fields
     if (
+      !email ||
       !name ||
       !guardianPhoneNumber ||
       !studentPhoneNumber ||
@@ -32,6 +34,7 @@ const placeOrder = async (req, res) => {
 
     // Create a new order
     const newOrder = new Order({
+      email,
       name,
       guardianPhoneNumber,
       studentPhoneNumber,
@@ -46,7 +49,6 @@ const placeOrder = async (req, res) => {
 
     // Save to the database
     const savedOrder = await newOrder.save();
-    console.log(savedOrder);
 
     res
       .status(201)
@@ -59,7 +61,8 @@ const placeOrder = async (req, res) => {
 // Get Orders by User Email
 const getOrdersByEmail = async (req, res) => {
   try {
-    const { email } = req.params.email;
+    const { email } = req.params;
+    console.log(email);
     const orders = await Order.find({ email });
     console.log(orders);
 

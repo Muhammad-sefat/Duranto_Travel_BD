@@ -4,8 +4,11 @@ import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import useAuth from "../hooks/useAuth";
 
 const BusSitPlanDetails = () => {
+  const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const { busData: stateBusData } = location.state || {};
@@ -23,6 +26,16 @@ const BusSitPlanDetails = () => {
   const [journeyDate, setJourneyDate] = useState(new Date());
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [showSeatPlan, setShowSeatPlan] = useState(false);
+  const [bookedSeats, setBookedSeats] = useState([]);
+
+  useEffect(() => {
+    if (user && busData) {
+      axios
+        .get(`/api/get-reservation/${user.email}/${busData._id}/${journeyDate}`)
+        .then((res) => setBookedSeats(res.data.selectedSeats))
+        .catch((err) => console.error(err));
+    }
+  }, [user, busData, journeyDate]);
 
   const locations = [
     { value: "halishour", label: "(Boro Pull) Halishour Chittagong" },
@@ -41,19 +54,29 @@ const BusSitPlanDetails = () => {
   ];
 
   const handleSeatClick = (seat) => {
-    const seatDetails = {
-      seatNumber: seat,
-      type: busData.seatType,
-      price: busData.price,
-    };
+    if (bookedSeats?.includes(seat)) return;
 
-    // Add or remove seat from selectedSeats
-    if (selectedSeats.some((s) => s.seatNumber === seat)) {
-      setSelectedSeats(selectedSeats.filter((s) => s.seatNumber !== seat));
-    } else {
-      setSelectedSeats([...selectedSeats, seatDetails]);
+    const updatedSeats = selectedSeats.some((s) => s.seatNumber === seat)
+      ? selectedSeats.filter((s) => s.seatNumber !== seat)
+      : [
+          ...selectedSeats,
+          { seatNumber: seat, type: busData.seatType, price: busData.price },
+        ];
+
+    setSelectedSeats(updatedSeats);
+
+    if (user) {
+      axios
+        .post("/api/reserve-seats", {
+          email: user.email,
+          busId: busData._id,
+          selectedSeats: updatedSeats,
+          journeyDate,
+        })
+        .catch((err) => console.error(err));
     }
   };
+
   const handleDeleteSeat = (seatNumber) => {
     setSelectedSeats(
       selectedSeats.filter((seat) => seat.seatNumber !== seatNumber)
@@ -74,6 +97,8 @@ const BusSitPlanDetails = () => {
 
   const calculateTotal = () =>
     selectedSeats.reduce((total, seat) => total + seat.price, 0);
+
+  const isBooked = (seat) => bookedSeats.includes(seat);
 
   return (
     <>
@@ -214,17 +239,18 @@ const BusSitPlanDetails = () => {
                   Select Your Seats
                 </h2>
                 <div className="grid grid-cols-2 gap-10">
-                  {seatList.map((row, rowIndex) => (
+                  {seatList?.map((row, rowIndex) => (
                     <div key={rowIndex} className="flex justify-center gap-2">
                       {row.map((seat) => (
                         <button
                           key={seat}
                           className={`w-12 h-12 rounded-full ${
-                            selectedSeats.find((s) => s.seatNumber === seat)
+                            selectedSeats?.find((s) => s.seatNumber === seat)
                               ? "bg-green-600 text-white"
                               : "bg-gray-200 text-gray-800"
                           } hover:bg-green-700 transition`}
                           onClick={() => handleSeatClick(seat)}
+                          disabled={bookedSeats?.includes(seat)}
                         >
                           {seat}
                         </button>

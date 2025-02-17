@@ -23,7 +23,7 @@ const Table = () => {
   return (
     <div className="my-5">
       <div className="text-center border-2 rounded p-3 w-[75%] mx-auto">
-        <p className="text-3xl font-bold text-orange-500">
+        <p className="text-xl md:text-3xl font-bold text-orange-500">
           নিচের তালিকা থেকে বুকিং করুন আপনার পছন্দের বাসের সিট।
         </p>
       </div>

@@ -42,7 +42,6 @@ const SingleSitDetails = () => {
       totalPrice: total,
       orderNotes: studentText,
     };
-    console.log(orderData);
 
     try {
       const response = await axios.post(

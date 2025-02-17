@@ -12,8 +12,9 @@ import { faLocationDot, faPhone } from "@fortawesome/free-solid-svg-icons";
 const Footer = () => {
   return (
     <>
-      <footer className="bg-[rgb(8,20,51)]  p-8 flex justify-between text-white text-left gap-8">
-        <aside className="text-left">
+      <footer className="bg-[rgb(8,20,51)] p-8 flex flex-wrap justify-between text-white text-left gap-8">
+        {/* Left Section (Company Info) */}
+        <aside className="text-left w-full sm:w-1/2 lg:w-[20%]">
           <img className="w-14 h-12 rounded" src={image} alt="image" />
           <p className="text-2xl font-bold my-2">Durontotravelsbd</p>
           <p className="text-base font-medium">
@@ -21,14 +22,16 @@ const Footer = () => {
             প্রতিষ্ঠান। ২০১৮ সাল থেকে আমরা সেবা দিয়ে যাচ্ছি।
           </p>
         </aside>
-        <nav>
+
+        {/* Contact Section */}
+        <nav className="w-full sm:w-1/2 lg:w-[20%]">
           <h6 className="text-2xl font-bold text-white">Contact</h6>
           <p className="link link-hover text-base font-medium my-3 leading-6">
             অফিস :২০৮ লালচাঁদ রোড(ফোকাস কোচিং এ একাডেমিক বিল্ডিং এর নিচতলা
             /সোনালী ব্যাংকের নিচতলা, চকবাজার, চট্টগ্রাম।
           </p>
           <p className="text-2xl font-bold text-white">Email address</p>
-          <p className="link link-hover text-base font-medium  my-3">
+          <p className="link link-hover text-base font-medium my-3">
             durontotravelsbd@gmail.com
           </p>
           <p className="text-2xl font-bold text-white">Phone Number</p>
@@ -42,7 +45,9 @@ const Footer = () => {
             <FontAwesomeIcon icon={faYoutube} size="2x" />
           </div>
         </nav>
-        <nav>
+
+        {/* Important Links Section */}
+        <nav className="w-full sm:w-1/2 lg:w-1/4">
           <h6 className="text-2xl font-bold text-white">Important Link</h6>
           <p className="link link-hover text-base font-medium my-3">Gallery</p>
           <p className="link link-hover text-base font-medium">Blog</p>
@@ -50,7 +55,9 @@ const Footer = () => {
             Conditions
           </p>
         </nav>
-        <nav>
+
+        {/* Offline Ticket Counter Section */}
+        <nav className="w-full sm:w-1/2 lg:w-[20%]">
           <h6 className="text-2xl font-bold text-white mb-4">
             Offline Ticket Counter
           </h6>
@@ -67,16 +74,15 @@ const Footer = () => {
           </div>
         </nav>
       </footer>
+
+      {/* Footer Bottom Section */}
       <footer className="footer bg-black text-neutral-content items-center p-5 px-8">
-        <aside className="grid-flow-col items-center">
+        <aside className="grid-flow-col items-center text-center sm:text-left w-full sm:w-auto">
           <p className="text-base font-medium">
             Copyright © {new Date().getFullYear()} Durontotravelsbd | Powered by
             Durontotravelsbd
           </p>
         </aside>
-        <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
-          <p>Design & Develop by AS IT PARK</p>
-        </nav>
       </footer>
     </>
   );

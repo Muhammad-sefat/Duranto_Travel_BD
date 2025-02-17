@@ -20,7 +20,7 @@ const CardSection = () => {
   return (
     <div className="my-5">
       <div className="text-center border-2 rounded p-3 w-[70%] mx-auto">
-        <p className="text-3xl font-bold text-orange-500">
+        <p className="text-xl md:text-3xl font-bold text-orange-500">
           যে সকল বিশ্ববিদ্যালয়ের আমাদের বাস সার্ভিস চলমান।
         </p>
       </div>

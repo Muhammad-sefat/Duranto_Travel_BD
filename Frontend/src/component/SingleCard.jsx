@@ -1,13 +1,14 @@
 import React from "react";
 
 const SingleCard = ({ bus, handleBookClick }) => {
+  console.log(bus);
   return (
     <div>
       <div className="card bg-base-100 shadow-xl h-[80%] transition-transform duration-300 ease-in-out hover:shadow-md ">
         <figure>
           <img
             className="w-full transition-transform duration-300 ease-in-out hover:scale-105"
-            src={bus.image}
+            src={bus.image || "https://i.ibb.co.com/rRBYxXNS/dhaka5.jpg"}
             alt="Image"
           />
         </figure>
